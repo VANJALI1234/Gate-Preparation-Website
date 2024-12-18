@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Test Registration</title>
+  <style>
+    /* Reset default styles */
+    body, h1, label, input, select, button {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    select {
+      background-color: #fff;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+
+    .terms-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mock Test Registration for GATE Exam</h1>
+  </header>
+
+  <div class="container">
+    <form id="registration-form" action="connection.php" method="POST" onsubmit="return validateForm();">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="uname" placeholder="Enter your full name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="number" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+
+      <label for="branch">Branch</label>
+      <select id="branch" name="branch" required>
+        <option value="" disabled selected>Select Your Branch</option>
+        <option value="cse">Computer Science Engineering</option>
+        <option value="ece">Electronics Communication Engineering</option>
+        <option value="chemical">Chemical Engineering</option>
+        <option value="civil">Civil Engineering</option>
+        <option value="mech">Mechanical Engineering</option>
+        <option value="eee">Electrical Engineering</option>
+      </select>
+
+      <label for="date">Date of Birth</label>
+      <input type="date" id="date" name="date" required>
+
+      <div class="terms-container">
+        <input type="checkbox" id="agreedTerms" name="agreedTerms" required>
+        <label for="agreedTerms">I agree to the terms and conditions</label>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Mock Test Registration</p>
+  </footer>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const branch = document.getElementById("branch").value;
+      const date = document.getElementById("date").value;
+      const terms = document.getElementById("agreedTerms").checked;
+
+      if (!name || !email || !phone || !branch || !date || !terms) {
+        alert("Please fill out all fields and agree to the terms.");
+        return false;
+      }
+
+      if (!/^\d{10}$/.test(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
